@@ -18,6 +18,7 @@
 		1107095C1F2E43DE00A0AC43 /* DefaultDemoTopRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1107095B1F2E43DE00A0AC43 /* DefaultDemoTopRefreshView.m */; };
 		1107095F1F2E489700A0AC43 /* DefaultDemoBottomRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1107095E1F2E489700A0AC43 /* DefaultDemoBottomRefreshView.m */; };
 		110709621F2E494300A0AC43 /* DefaultDemoComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 110709611F2E494200A0AC43 /* DefaultDemoComponent.m */; };
+		117EA7EE1F31BB4E00748D20 /* MLRefreshViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 117EA7ED1F31BB4E00748D20 /* MLRefreshViewDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,10 @@
 		1107095E1F2E489700A0AC43 /* DefaultDemoBottomRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultDemoBottomRefreshView.m; sourceTree = "<group>"; };
 		110709601F2E494200A0AC43 /* DefaultDemoComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultDemoComponent.h; sourceTree = "<group>"; };
 		110709611F2E494200A0AC43 /* DefaultDemoComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultDemoComponent.m; sourceTree = "<group>"; };
+		117EA7EC1F31BB4E00748D20 /* MLRefreshViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLRefreshViewDelegate.h; sourceTree = "<group>"; };
+		117EA7ED1F31BB4E00748D20 /* MLRefreshViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLRefreshViewDelegate.m; sourceTree = "<group>"; };
+		117EA7EF1F31BBFA00748D20 /* MLScrollViewRefresh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLScrollViewRefresh.h; sourceTree = "<group>"; };
+		117EA7F01F31BD1F00748D20 /* MLRefreshViewEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLRefreshViewEnum.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +108,10 @@
 				110709511F2DF1A300A0AC43 /* MLRefreshViewProtocol.m */,
 				110709531F2DF21400A0AC43 /* MLRefreshViewComponent.h */,
 				110709541F2DF21400A0AC43 /* MLRefreshViewComponent.m */,
+				117EA7EC1F31BB4E00748D20 /* MLRefreshViewDelegate.h */,
+				117EA7ED1F31BB4E00748D20 /* MLRefreshViewDelegate.m */,
+				117EA7F01F31BD1F00748D20 /* MLRefreshViewEnum.h */,
+				117EA7EF1F31BBFA00748D20 /* MLScrollViewRefresh.h */,
 			);
 			path = MLScrollViewRefresh;
 			sourceTree = "<group>";
@@ -191,6 +200,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				117EA7EE1F31BB4E00748D20 /* MLRefreshViewDelegate.m in Sources */,
 				1107095F1F2E489700A0AC43 /* DefaultDemoBottomRefreshView.m in Sources */,
 				1107093C1F2DEE0200A0AC43 /* ViewController.m in Sources */,
 				1107095C1F2E43DE00A0AC43 /* DefaultDemoTopRefreshView.m in Sources */,

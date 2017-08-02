@@ -41,14 +41,14 @@
     
     __weak id weakSelf = self;
     
-    _demoComponent.topRefreshViewActivityOperationBegin = ^{
+    _demoComponent.topRefreshViewActivityOperationBeginBlock = ^{
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             [NSThread sleepForTimeInterval:5];
             [weakSelf performSelectorOnMainThread:@selector(topRefreshViewOperationComplete) withObject:nil waitUntilDone:NO];
         });
     };
     
-    _demoComponent.bottomRefreshViewActivityOperationBegin = ^{
+    _demoComponent.bottomRefreshViewActivityOperationBeginBlock = ^{
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             [NSThread sleepForTimeInterval:5];
             [weakSelf performSelectorOnMainThread:@selector(bottomRefreshViewOperationComplete) withObject:nil waitUntilDone:NO];

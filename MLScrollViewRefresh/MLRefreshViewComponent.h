@@ -7,14 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MLRefreshViewProtocol.h"
+#import "MLScrollViewRefresh.h"
 
-typedef NS_ENUM(NSInteger,MLRefreshViewStatus) {
-    MLRefreshViewStatusHidding = 0,
-    MLRefreshViewStatusScrolling = 1,
-    MLRefreshViewStatusFullyShow = 2,
-    MLRefreshViewStatusActiving = 3
-};
+typedef void(^topRefreshViewActivityOperationBegin)();
+typedef void(^bottomRefreshViewActivityOperationBegin)();
 
 @interface MLRefreshViewComponent : NSObject<UIScrollViewDelegate>
 
@@ -26,16 +22,19 @@ typedef NS_ENUM(NSInteger,MLRefreshViewStatus) {
 #pragma mark -
 #pragma mark topRefreshView
 @property (nonatomic) UIView<MLRefreshViewProtocol> *topRefreshView;
-@property (nonatomic,copy) void(^topRefreshViewActivityOperationBegin)();
+@property (nonatomic,copy) topRefreshViewActivityOperationBegin topRefreshViewActivityOperationBeginBlock;
 -(void)topRefreshViewOperationComplete;
 
 
 #pragma mark -
 #pragma mark bottomRefreshView
 @property (nonatomic) UIView<MLRefreshViewProtocol> *bottomRefreshView;
-@property (nonatomic,copy) void(^bottomRefreshViewActivityOperationBegin)();
+@property (nonatomic,copy) bottomRefreshViewActivityOperationBegin bottomRefreshViewActivityOperationBeginBlock;
 -(void)bottomRefreshViewOperationComplete;
 
+#pragma mark -
+#pragma mark delegate
+@property (nonatomic,weak) id<MLRefreshViewDelegate> refresViewdelegate;
 
 #pragma mark -
 #pragma mark TODO

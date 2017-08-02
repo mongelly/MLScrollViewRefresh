@@ -117,6 +117,10 @@
             if([_topRefreshView respondsToSelector:@selector(refreshViewWillHidding)])
             {
                 [_topRefreshView refreshViewWillHidding];
+                if(_refresViewdelegate != nil && [_refresViewdelegate respondsToSelector:@selector(refreshViewWillHidding:andViewType:)])
+                {
+                    [_refresViewdelegate refreshViewWillHidding:_topRefreshView andViewType:MLRefreshViewTypeTop];
+                }
             }
         }
     }
@@ -131,12 +135,20 @@
             if([_topRefreshView respondsToSelector:@selector(refreshViewWillDisplay)])
             {
                 [_topRefreshView refreshViewWillDisplay];
+                if(_refresViewdelegate != nil && [_refresViewdelegate respondsToSelector:@selector(refreshViewWillDisplay:andViewType:)])
+                {
+                    [_refresViewdelegate refreshViewWillDisplay:_topRefreshView andViewType:MLRefreshViewTypeTop];
+                }
             }
         }
         
         if([_topRefreshView respondsToSelector:@selector(refreshViewDidScroll:)])
         {
             [_topRefreshView refreshViewDidScroll:CGPointMake(scrollOffset.x, scrollOffsetY)];
+            if(_refresViewdelegate != nil && [_refresViewdelegate respondsToSelector:@selector(refreshViewDidScroll:andView:andViewType:)])
+            {
+                [_refresViewdelegate refreshViewDidScroll:CGPointMake(scrollOffset.x, scrollOffsetY) andView:_topRefreshView andViewType:MLRefreshViewTypeTop];
+            }
         }
         
         //scrollOffsetY 滑动距离超过topRefreshView高度时执行refreshViewFullyDisplay，并将topRefreshViewStatus置为MLRefreshViewStatusFullyShow
@@ -146,6 +158,10 @@
             {
                 _topRefreshViewStatus = MLRefreshViewStatusFullyShow;
                 [_topRefreshView refreshViewFullyDisplay];
+                if(_refresViewdelegate != nil && [_refresViewdelegate respondsToSelector:@selector(refreshViewFullyDisplay:andViewType:)])
+                {
+                    [_refresViewdelegate refreshViewFullyDisplay:_topRefreshView andViewType:MLRefreshViewTypeTop];
+                }
             }
         }
         else
@@ -156,7 +172,6 @@
             }
         }
     }
-    
 }
 
 -(void)topRefreshViewDidEndDraggingHandle:(CGPoint)endScrollOffset
@@ -168,6 +183,10 @@
         if([_topRefreshView respondsToSelector:@selector(refreshViewDidEndDDragging)])
         {
             [_topRefreshView refreshViewDidEndDDragging];
+            if(_refresViewdelegate != nil && [_refresViewdelegate respondsToSelector:@selector(refreshViewDidEndDDragging:andViewType:)])
+            {
+                [_refresViewdelegate refreshViewDidEndDDragging:_topRefreshView andViewType:MLRefreshViewTypeTop];
+            }
         }
         
         //获取激活的滑动距离，默认为topRefreshView的高度，若topRefreshView实现了activeDistance这根据activeDistance获取
@@ -189,11 +208,15 @@
             if([_topRefreshView respondsToSelector:@selector(refreshViewActivetyOperation)])
             {
                 [_topRefreshView refreshViewActivetyOperation];
+                if(_refresViewdelegate != nil && [_refresViewdelegate respondsToSelector:@selector(refreshViewActivetyOperation:andViewType:)])
+                {
+                    [_refresViewdelegate refreshViewActivetyOperation:_topRefreshView andViewType:MLRefreshViewTypeTop];
+                }
             }
             
-            if(self.topRefreshViewActivityOperationBegin != nil)
+            if(self.topRefreshViewActivityOperationBeginBlock != nil)
             {
-                self.topRefreshViewActivityOperationBegin();
+                self.topRefreshViewActivityOperationBeginBlock();
             }
             else //如果topRefreshViewActivityOperationBegin未指定，则直接执行topRefreshViewOperationComplete
             {
@@ -210,6 +233,10 @@
         if([_topRefreshView respondsToSelector:@selector(refreshViewOperationCompleted)])
         {
             [_topRefreshView refreshViewOperationCompleted];
+            if(_refresViewdelegate != nil && [_refresViewdelegate respondsToSelector:@selector(refreshViewOperationCompleted:andViewType:)])
+            {
+                [_refresViewdelegate refreshViewOperationCompleted:_topRefreshView andViewType:MLRefreshViewTypeTop];
+            }
         }
         [UIView animateWithDuration:0.5 animations:^{
             _scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
@@ -248,6 +275,10 @@
                 if([_bottomRefreshView respondsToSelector:@selector(refreshViewWillHidding)])
                 {
                     [_bottomRefreshView refreshViewWillHidding];
+                    if(_refresViewdelegate != nil && [_refresViewdelegate respondsToSelector:@selector(refreshViewWillHidding:andViewType:)])
+                    {
+                        [_refresViewdelegate refreshViewWillHidding:_bottomRefreshView andViewType:MLRefreshViewTypeBottom];
+                    }
                 }
             }
         }
@@ -262,6 +293,10 @@
                 if([_bottomRefreshView respondsToSelector:@selector(refreshViewWillDisplay)])
                 {
                     [_bottomRefreshView refreshViewWillDisplay];
+                    if(_refresViewdelegate != nil && [_refresViewdelegate respondsToSelector:@selector(refreshViewWillDisplay:andViewType:)])
+                    {
+                        [_refresViewdelegate refreshViewWillDisplay:_bottomRefreshView andViewType:MLRefreshViewTypeBottom];
+                    }
                 }
             }
             
@@ -271,7 +306,21 @@
                 {
                     _bottomRefreshViewStatus = MLRefreshViewStatusFullyShow;
                     [_bottomRefreshView refreshViewFullyDisplay];
+                    if(_refresViewdelegate != nil && [_refresViewdelegate respondsToSelector:@selector(refreshViewFullyDisplay:andViewType:)])
+                    {
+                        [_refresViewdelegate refreshViewFullyDisplay:_bottomRefreshView andViewType:MLRefreshViewTypeBottom];
+                    }
                 }
+                
+                if([_bottomRefreshView respondsToSelector:@selector(refreshViewDidScroll:)])
+                {
+                    [_bottomRefreshView refreshViewDidScroll:CGPointMake(scrollOffset.x, endScrollOffsetY)];
+                    if(_refresViewdelegate != nil && [_refresViewdelegate respondsToSelector:@selector(refreshViewDidScroll:andView:andViewType:)])
+                    {
+                        [_refresViewdelegate refreshViewDidScroll:CGPointMake(scrollOffset.x, endScrollOffsetY) andView:_bottomRefreshView andViewType:MLRefreshViewTypeBottom];
+                    }
+                }
+                
             }
             else
             {
@@ -306,6 +355,10 @@
         if([_bottomRefreshView respondsToSelector:@selector(refreshViewDidEndDDragging)])
         {
             [_bottomRefreshView refreshViewDidEndDDragging];
+            if(_bottomRefreshView != nil && [_bottomRefreshView respondsToSelector:@selector(refreshViewDidScroll:andView:andViewType:)])
+            {
+                [_refresViewdelegate refreshViewDidScroll:CGPointMake(scrollOffset.x, endScrollOffsetY) andView:_bottomRefreshView andViewType:MLRefreshViewTypeBottom];
+            }
         }
         //获取激活的滑动距离，默认为bottomRefreshView的高度，若bottomRefreshView实现了activeDistance这根据activeDistance获取
         CGFloat activeDistance = _topRefreshView.frame.size.height;
@@ -333,11 +386,15 @@
             if([_bottomRefreshView respondsToSelector:@selector(refreshViewActivetyOperation)])
             {
                 [_bottomRefreshView refreshViewActivetyOperation];
+                if(_bottomRefreshView != nil && [_bottomRefreshView respondsToSelector:@selector(refreshViewActivetyOperation:andViewType:)])
+                {
+                    [_refresViewdelegate refreshViewActivetyOperation:_bottomRefreshView andViewType:MLRefreshViewTypeBottom];
+                }
             }
             
-            if(self.bottomRefreshViewActivityOperationBegin != nil)
+            if(self.bottomRefreshViewActivityOperationBeginBlock != nil)
             {
-                self.bottomRefreshViewActivityOperationBegin();
+                self.bottomRefreshViewActivityOperationBeginBlock();
             }
             else //如果bottomRefreshViewActivityOperationBegin未指定，则直接执行bottomRefreshViewOperationComplete
             {
@@ -345,7 +402,6 @@
             }
         }
     }
-    
 }
 
 -(void)bottomRefreshViewOperationComplete
@@ -355,13 +411,16 @@
         if([_bottomRefreshView respondsToSelector:@selector(refreshViewOperationCompleted)])
         {
             [_bottomRefreshView refreshViewOperationCompleted];
+            if(_bottomRefreshView != nil && [_bottomRefreshView respondsToSelector:@selector(refreshViewOperationCompleted:andViewType:)])
+            {
+                [_refresViewdelegate refreshViewOperationCompleted:_bottomRefreshView andViewType:MLRefreshViewTypeBottom];
+            }
         }
         [UIView animateWithDuration:0.5 animations:^{
             _scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
             _bottomRefreshViewStatus = MLRefreshViewStatusHidding;
         }];
     }
-
 }
 
 @end
